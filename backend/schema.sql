@@ -7,7 +7,8 @@ DROP TABLE IF EXISTS stocks;
 CREATE TABLE stocks (
     symbol text PRIMARY KEY,
     name text NOT NULL,
-    ipo_date date,
+    exchange text NOT NULL,
+    ipo_date date NOT NULL,
     region text NOT NULL,
     currency text NOT NULL,
     type text
@@ -40,10 +41,10 @@ CREATE TABLE investments (
 
 
 /*
-INSERT INTO stocks (symbol, name, ipo_date, region, currency, type)
-    VALUES ('GOOG', 'Google', '2000-01-01', 'us', 'USD', 'te');
-INSERT INTO stocks (symbol, name, ipo_date, region, currency, type)
-    VALUES ('AAPL', 'Apple', '2000-12-30', 'us', 'USD', 'te');
+INSERT INTO stocks (symbol, name, exchange, ipo_date, region, currency, type)
+    VALUES ('GOOG', 'Google', 'NASDAQ', '2000-01-01', 'us', 'USD', 'te');
+INSERT INTO stocks (symbol, name, exchange, ipo_date, region, currency, type)
+    VALUES ('AAPL', 'Apple', 'NASDAQ', '2000-12-30', 'us', 'USD', 'te');
 
 INSERT INTO users (username, password, first_name, last_name, email)
     VALUES ('test1', 'testing', 'test1', 'user', 'test1@test.com');
