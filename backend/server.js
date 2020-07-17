@@ -1,4 +1,4 @@
-/** Start server for jobly. */
+/** Start server for iFinvest. */
 
 const app = require("./app");
 const { PORT } = require("./config");
