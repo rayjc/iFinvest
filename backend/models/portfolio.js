@@ -46,11 +46,12 @@ class Portfolio {
    */
   static async getPortfolios(userId) {
     const result = await db.query(
-      `SELECT portfolios.id, name, user_id, created_at, 
-        JSON_AGG(json_build_object('id', investments.id, 'symbol', investments.symbol)) 
-          AS investments
+      `SELECT portfolios.id, name, user_id, created_at, COALESCE(
+          JSON_AGG(json_build_object('id', investments.id, 'symbol', investments.symbol))
+          FILTER (WHERE investments.portfolio_id IS NOT NULL), '[]'
+        ) AS investments
         FROM portfolios
-        JOIN investments ON investments.portfolio_id=portfolios.id
+        LEFT JOIN investments ON investments.portfolio_id=portfolios.id
         WHERE user_id=$1
         GROUP BY portfolios.id`,
       [userId]

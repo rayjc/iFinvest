@@ -29,9 +29,9 @@ router.get("/", async (req, res, next) => {
 });
 
 
-router.get("/:userId", async (req, res, next) => {
+router.get("/:userId", ensureLoggedIn, ensureCorrectUser, async (req, res, next) => {
   try {
-    const detailedUser = await User.getById(req.params.userId);
+    const detailedUser = await User.getById(+req.params.userId);
     const { password, ...user } = detailedUser;
 
     return res.json({ user });
@@ -65,7 +65,7 @@ router.post("/", async (req, res, next) => {
 router.patch("/:userId", ensureLoggedIn, ensureCorrectUser, async (req, res, next) => {
   try {
     // get user instance from db
-    const detailedUser = await User.getById(req.params.userId);
+    const detailedUser = await User.getById(+req.params.userId);
     //validte and update user instance
     validateJSON(req.body, userPatchSchema);
     const fields = ["username", "password", "first_name", "last_name", "email"];
@@ -88,7 +88,7 @@ router.patch("/:userId", ensureLoggedIn, ensureCorrectUser, async (req, res, nex
 
 router.delete("/:userId", ensureLoggedIn, ensureCorrectUser, async (req, res, next) => {
   try {
-    const user = await User.getById(req.params.userId);
+    const user = await User.getById(+req.params.userId);
     await user.remove();
 
     return res.json({ message: `User(${user.username}) deleted` });

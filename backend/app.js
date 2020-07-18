@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const ExpressError = require("./helpers/expressError");
 const { authenticateJWT } = require("./middleware/auth");
 const usersRoutes = require("./routes/users");
+const portfoliosRoutes = require("./routes/portfolios");
 
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(morgan("tiny"));
 app.use(authenticateJWT);
 
 app.use("/users", usersRoutes);
+app.use("/portfolios", portfoliosRoutes);
 
 
 /** 404 handler */
