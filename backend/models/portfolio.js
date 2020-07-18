@@ -16,7 +16,7 @@ class Portfolio {
    * { id, name, user_id, created_at, investments: [{investment_id, symbol}, ...] }.
    * @param {Number} portfolioId 
    */
-  static async get(portfolioId) {
+  static async get(portfolioId, verbose = false) {
     const portfolioResult = await db.query(
       `SELECT id, name, user_id, created_at FROM portfolios
         WHERE id = $1`,
@@ -27,11 +27,17 @@ class Portfolio {
       throw new ExpressError(`Cannot find portfolio_id:${portfolioId}`, 404);
     }
 
-    const investmentsResult = await db.query(
-      `SELECT id, symbol FROM investments
+    const investmentsResult = verbose
+      ? await db.query(
+        `SELECT id, symbol, initial_value, start_date, end_date FROM investments
+          WHERE portfolio_id = $1`,
+        [portfolioId]
+      )
+      : await db.query(
+        `SELECT id, symbol FROM investments
         WHERE portfolio_id = $1`,
-      [portfolioId]
-    );
+        [portfolioId]
+      );
 
     const portfolio = portfolioResult.rows[0];
     portfolio.investments = investmentsResult.rows;

@@ -10,9 +10,9 @@ const validateJSON = require("../helpers/validateJson");
 const router = new express.Router();
 
 
-router.get("/:userId", ensureLoggedIn, ensureCorrectUser, async (req, res, next) => {
+router.get("/", ensureLoggedIn, async (req, res, next) => {
   try {
-    const portfolios = await Portfolio.getPortfolios(+req.params.userId);
+    const portfolios = await Portfolio.getPortfolios(req.user.id);
     return res.json({ portfolios });
 
   } catch (error) {
@@ -21,11 +21,11 @@ router.get("/:userId", ensureLoggedIn, ensureCorrectUser, async (req, res, next)
 });
 
 
-router.post("/:userId", ensureLoggedIn, ensureCorrectUser, async (req, res, next) => {
+router.post("/", ensureLoggedIn, async (req, res, next) => {
   try {
     validateJSON(req.body, portfolioSchema);
 
-    const portfolio = await Portfolio.create(req.body.name, +req.params.userId);
+    const portfolio = await Portfolio.create(req.body.name, req.user.id);
     return res.status(201).json({ portfolio });
 
   } catch (error) {
@@ -34,13 +34,13 @@ router.post("/:userId", ensureLoggedIn, ensureCorrectUser, async (req, res, next
 });
 
 
-router.patch("/:userId/:portfolioId", ensureLoggedIn, ensureCorrectUser, async (req, res, next) => {
+router.patch("/:portfolioId", ensureLoggedIn, async (req, res, next) => {
   try {
     validateJSON(req.body, portfolioPatchSchema);
 
     const portfolio = await Portfolio.get(+req.params.portfolioId);
     // check if userId matches user_id of portfolio
-    if (portfolio.user_id !== +req.params.userId) {
+    if (portfolio.user_id !== req.user.id) {
       throw new ExpressError(
         `Unauthorized; only user with id:${portfolio.user_id} can update ${portfolio.name}.`,
         401
@@ -62,11 +62,11 @@ router.patch("/:userId/:portfolioId", ensureLoggedIn, ensureCorrectUser, async (
 });
 
 
-router.delete("/:userId/:portfolioId", ensureLoggedIn, ensureCorrectUser, async (req, res, next) => {
+router.delete("/:portfolioId", ensureLoggedIn, async (req, res, next) => {
   try {
     const portfolio = await Portfolio.get(+req.params.portfolioId);
     // check if userId matches user_id of portfolio
-    if (portfolio.user_id === +req.params.userId) {
+    if (portfolio.user_id === req.user.id) {
       await portfolio.remove();
       return res.json({ message: `Portfolio(${portfolio.name}) deleted` });
     }
