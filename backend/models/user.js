@@ -44,7 +44,8 @@ class User {
 
     } catch (error) {
       if (error.code === "23505") {
-        throw new ExpressError(`${error.column} already exists.`, 403);
+        console.log(error);
+        throw new ExpressError(`${error.detail.replace('Key ', '')}`, 403);
       }
       throw error;
     }
@@ -121,40 +122,28 @@ class User {
   }
 
   /**
-   * Updates user data with `data`.
-   * This is a "partial update" --- it's fine if data doesn't contain
-   * all the fields; this only changes provided ones.
-   * Returns data for changed user.
-   *
+   * Upates user in database based on current instance.
    * PRE: user should be authenticated and password field is unhashed.
-   * @param {Number} id 
-   * @param {Object} data
    */
-  static async update(id, data) {
-    if (data.password) {
-      data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
-    }
-
-    let { query, values } = partialUpdate(
-      "users",
-      data,
-      "id",
-      id
-    );
-
+  async update() {
     try {
-      const result = await db.query(query, values);
-      const user = result.rows[0];
+      const hashedPassword = await bcrypt.hash(this.password, BCRYPT_WORK_FACTOR);
+      const result = await db.query(
+        `UPDATE users SET username=$2, password=$3, first_name=$4, last_name=$5, email=$6
+          WHERE id=$1
+          RETURNING id, username, password, first_name, last_name, email`,
+        [this.id, this.username, hashedPassword, this.first_name, this.last_name, this.email]
+      );
 
-      if (!user) {
-        throw new ExpressError(`Cannot find userId:${id}`, 404);
+      if (result.rows.length === 0) {
+        throw new ExpressError(`Cannot find user_id:${this.id}`, 404);
       }
 
-      return new User(...Object.values(user));
+      return this;
 
     } catch (error) {
       if (error.code === "23505") {
-        throw new ExpressError(`${error.column} already exists.`, 403);
+        throw new ExpressError(`${error.detail.replace('Key ', '')}`, 403);
       }
       throw error;
     }
