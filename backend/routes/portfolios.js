@@ -26,7 +26,7 @@ router.post("/:userId", ensureLoggedIn, ensureCorrectUser, async (req, res, next
     validateJSON(req.body, portfolioSchema);
 
     const portfolio = await Portfolio.create(req.body.name, +req.params.userId);
-    return res.json({ portfolio });
+    return res.status(201).json({ portfolio });
 
   } catch (error) {
     return next(error);
