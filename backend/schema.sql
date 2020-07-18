@@ -27,7 +27,8 @@ CREATE TABLE portfolios (
     id serial PRIMARY KEY,
     name text NOT NULL,
     created_at date NOT NULL DEFAULT CURRENT_DATE,
-    user_id integer NOT NULL REFERENCES users ON DELETE CASCADE
+    user_id integer NOT NULL REFERENCES users ON DELETE CASCADE,
+    CONSTRAINT unique_portfolio UNIQUE (user_id, name)
 );
 
 CREATE TABLE investments (
@@ -36,7 +37,8 @@ CREATE TABLE investments (
     end_date date,
     initial_value float NOT NULL,
     symbol text NOT NULL REFERENCES stocks ON DELETE CASCADE,
-    portfolio_id integer NOT NULL REFERENCES portfolios ON DELETE CASCADE
+    portfolio_id integer NOT NULL REFERENCES portfolios ON DELETE CASCADE,
+    CONSTRAINT unique_investment UNIQUE (portfolio_id, symbol)
 );
 
 
