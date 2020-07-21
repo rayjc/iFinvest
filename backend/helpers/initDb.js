@@ -1,8 +1,9 @@
 const axios = require('axios');
 const db = require('../db');
+const { IEX_TOKEN } = require('../config');
 
 async function initDb() {
-  const token = process.env.IEX_TOKEN;
+  const token = IEX_TOKEN;
   if (!token) {
     throw Error('Environment variable IEX token is not set');
   }
@@ -23,7 +24,7 @@ async function initDb() {
       await db.query(
         `INSERT INTO stocks (symbol, name, exchange, ipo_date, region, currency, type)
           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [symbol, name, exchange, date, region, currency, type])
+        [symbol, name, exchange, date, region, currency, type]);
     }
     console.log(`Database initialized with stock symbols.`);
   } catch (error) {

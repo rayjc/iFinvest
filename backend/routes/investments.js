@@ -7,6 +7,8 @@ const investmentSchema = require("../schemas/investment.json");
 const investmentPatchSchema = require("../schemas/investmentPatch.json");
 const { ensureLoggedIn } = require("../middleware/auth");
 const validateJSON = require("../helpers/validateJson");
+const ApiHelper = require("../helpers/apiHelper");
+const calcInterest = require("../helpers/calcInterest");
 
 
 const router = new express.Router();
@@ -99,5 +101,29 @@ router.delete("/:id", ensureLoggedIn, async (req, res, next) => {
   }
 });
 
+
+router.get("/interest/:id", ensureLoggedIn, async (req, res, next) => {
+  try {
+    const investment = await Investment.get(+req.params.id);
+    const { symbol, start_date, end_date } = investment;
+    const initial = await ApiHelper.getSingleDataPoint(symbol, start_date);
+    // get price at sell off if sold, otherwise get current price
+    const final = end_date
+      ? await ApiHelper.getSingleDataPoint(symbol, end_date)
+      : await ApiHelper.getLastClose(symbol);
+
+    // store initial price to db to avoid additional API calls
+    investment.initial_price = initial.close;
+    await investment.update();
+
+    return res.json({
+      symbol, start_date: initial.date, end_date: final.date,
+      interest: calcInterest(final.close, initial.close)
+    });
+
+  } catch (error) {
+    return next(error);
+  }
+});
 
 module.exports = router;

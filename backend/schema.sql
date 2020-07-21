@@ -36,13 +36,14 @@ CREATE TABLE investments (
     start_date date NOT NULL DEFAULT CURRENT_DATE,
     end_date date,
     initial_value float NOT NULL,
+    initial_price float,
     symbol text NOT NULL REFERENCES stocks ON DELETE CASCADE,
     portfolio_id integer NOT NULL REFERENCES portfolios ON DELETE CASCADE,
     CONSTRAINT unique_investment UNIQUE (portfolio_id, symbol)
 );
 
 
-/*
+
 INSERT INTO stocks (symbol, name, exchange, ipo_date, region, currency, type)
     VALUES ('GOOG', 'Google', 'NASDAQ', '2000-01-01', 'us', 'USD', 'te');
 INSERT INTO stocks (symbol, name, exchange, ipo_date, region, currency, type)
@@ -66,4 +67,3 @@ INSERT INTO investments (start_date, initial_value, symbol, portfolio_id)
     VALUES ('2010-03-25', 1000, 'AAPL', 1);
 INSERT INTO investments (start_date, initial_value, symbol, portfolio_id)
     VALUES ('2010-04-10', 1000, 'GOOG', 2);
-*/

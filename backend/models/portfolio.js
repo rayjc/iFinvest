@@ -29,7 +29,7 @@ class Portfolio {
 
     const investmentsResult = verbose
       ? await db.query(
-        `SELECT id, symbol, initial_value, start_date, end_date FROM investments
+        `SELECT id, symbol, initial_value, initial_price, start_date, end_date FROM investments
           WHERE portfolio_id = $1`,
         [portfolioId]
       )

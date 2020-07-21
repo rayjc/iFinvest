@@ -3,9 +3,10 @@ const ExpressError = require("../helpers/expressError");
 
 
 class Investment {
-  constructor(id, initial_value, symbol, portfolio_id, start_date = null, end_date = null) {
+  constructor(id, initial_value, initial_price, symbol, portfolio_id, start_date = null, end_date = null) {
     this.id = id;
     this.initial_value = initial_value;
+    this.initial_price = initial_price;
     this.symbol = symbol;
     this.portfolio_id = portfolio_id;
     this.start_date = start_date;
@@ -18,7 +19,7 @@ class Investment {
    */
   static async get(investmentId) {
     const result = await db.query(
-      `SELECT id, initial_value, symbol, portfolio_id, start_date, end_date FROM investments
+      `SELECT id, initial_value, initial_price, symbol, portfolio_id, start_date, end_date FROM investments
         WHERE id = $1`,
       [investmentId]
     );
@@ -45,13 +46,13 @@ class Investment {
         await db.query(
           `INSERT INTO investments (initial_value, symbol, portfolio_id, start_date, end_date)
             VALUES ($1, $2, $3, $4, $5)
-            RETURNING id, initial_value, symbol, portfolio_id, start_date, end_date`,
+            RETURNING id, initial_value, initial_price, symbol, portfolio_id, start_date, end_date`,
           [initialValue, symbol, portfolioId, startDate, endDate]
         ) :
         await db.query(
           `INSERT INTO investments (initial_value, symbol, portfolio_id, end_date)
             VALUES ($1, $2, $3, $4)
-            RETURNING id, initial_value, symbol, portfolio_id, start_date, end_date`,
+            RETURNING id, initial_value, initial_price, symbol, portfolio_id, start_date, end_date`,
           [initialValue, symbol, portfolioId, endDate]
         );
 
@@ -75,7 +76,7 @@ class Investment {
       const result = await db.query(
         `UPDATE investments SET initial_value=$2, symbol=$3, start_date=$4, end_date=$5
           WHERE id=$1
-          RETURNING id, initial_value, symbol, portfolio_id, start_date, end_date`,
+          RETURNING id, initial_value, initial_price, symbol, portfolio_id, start_date, end_date`,
         [this.id, this.initial_value, this.symbol, this.start_date, this.end_date]
       );
 
