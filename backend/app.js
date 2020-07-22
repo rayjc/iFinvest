@@ -8,6 +8,7 @@ const { authenticateJWT } = require("./middleware/auth");
 const usersRoutes = require("./routes/users");
 const portfoliosRoutes = require("./routes/portfolios");
 const investmentsRoutes = require("./routes/investments");
+const stockRoutes = require("./routes/stocks");
 
 
 const app = express();
@@ -23,6 +24,7 @@ app.use(authenticateJWT);
 app.use("/users", usersRoutes);
 app.use("/portfolios", portfoliosRoutes);
 app.use("/investments", investmentsRoutes);
+app.use("/stocks", stockRoutes);
 
 
 /** 404 handler */
