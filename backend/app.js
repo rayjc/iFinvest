@@ -5,6 +5,7 @@ const morgan = require("morgan");
 
 const ExpressError = require("./helpers/expressError");
 const { authenticateJWT } = require("./middleware/auth");
+const loginRoutes = require("./routes/login");
 const usersRoutes = require("./routes/users");
 const portfoliosRoutes = require("./routes/portfolios");
 const investmentsRoutes = require("./routes/investments");
@@ -21,6 +22,7 @@ app.use(morgan("tiny"));
 // get jwt auth token for all routes
 app.use(authenticateJWT);
 
+app.use("/login", loginRoutes);
 app.use("/users", usersRoutes);
 app.use("/portfolios", portfoliosRoutes);
 app.use("/investments", investmentsRoutes);
