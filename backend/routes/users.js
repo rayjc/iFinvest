@@ -54,7 +54,7 @@ router.post("/", async (req, res, next) => {
     const { password: hashedPassword, ...user } = detailedUser;
     const payload = { id: user.id, username: user.username };
 
-    return res.status(201).json({ user, token: jwt.sign(payload, SECRET_KEY, { expiresIn: "1d" }) });
+    return res.status(201).json({ user, token: jwt.sign(payload, SECRET_KEY) });
 
   } catch (error) {
     return next(error);
