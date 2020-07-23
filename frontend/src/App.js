@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { authenticate } from './helpers/auth';
+import { useDispatch } from 'react-redux';
+import { loadUser } from './reducers/user/actions';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // check if user is logged in
+    const token = authenticate();
+    if (token) {
+      // fetch and store user info to store
+      dispatch(loadUser(token));
+    }
+  }, [dispatch]);
+
   return (
     <div className="App">
       <header className="App-header">

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BACKEND_URL } from '../config';
-import authenticate from '../helpers/authenticate';
+import { authenticate } from '../helpers/auth';
 
 
 class ApiHelper {
