@@ -2,6 +2,7 @@
 
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const ExpressError = require("./helpers/expressError");
 const { authenticateJWT } = require("./middleware/auth");
@@ -15,6 +16,9 @@ const stockRoutes = require("./routes/stocks");
 const app = express();
 // set up body parsing
 app.use(express.json());
+
+// allow cors to test frontend with localhost
+app.use(cors());
 
 // add logging system
 app.use(morgan("tiny"));
