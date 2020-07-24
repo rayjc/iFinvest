@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import Auth from './Auth';
+import Profile from './Profile';
 
 
 const Routes = () => (
@@ -13,8 +14,7 @@ const Routes = () => (
       <Auth />
     </Route>
     <PrivateRoute exact path="/profile">
-      {/* <Profile /> */}
-      <p>User profile form</p>
+      <Profile />
     </PrivateRoute>
     <Route exact path="/">
       {/* <Home /> */}

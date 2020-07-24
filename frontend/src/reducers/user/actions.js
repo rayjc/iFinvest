@@ -1,6 +1,7 @@
 import {
   LOAD_USER_FAILURE, LOAD_USER_REQUEST, LOAD_USER_SUCCESS,
-  RESET_USER
+  RESET_USER,
+  SET_USER
 } from './actionTypes';
 import { decode } from "jsonwebtoken";
 import UserApi from '../../api/userApi';
@@ -45,4 +46,11 @@ function resetUser() {
 }
 
 
-export { loadUser, resetUser };
+function setUser(user) {
+  return {
+    type: SET_USER,
+    user,
+  };
+}
+
+export { loadUser, resetUser, setUser };
