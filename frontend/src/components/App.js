@@ -7,6 +7,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { blue, pink } from '@material-ui/core/colors';
 import Menu from './Menu';
+import Routes from './Routes';
 
 
 const theme = createMuiTheme({
@@ -40,6 +41,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Menu />
+      <main>
+        <Routes />
+      </main>
     </ThemeProvider>
   );
 }

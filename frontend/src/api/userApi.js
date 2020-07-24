@@ -19,7 +19,7 @@ class UserApi {
 
   /**
    * Create a new user based on given user data;
-   * return {id, username, firstName, lastName, email}
+   * return token
    * @param {Object} user - { username, password, first_name, last_name, email }
    */
   static async createUser(user) {

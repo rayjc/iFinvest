@@ -57,7 +57,7 @@ const MenuDrawer = ({ isOpen, setIsOpen, handleLogout }) => {
         </ListItem>
         {user && portfolios.map(p => (
           <ListItem className={classes.portfolio}
-            component={NavLink} to={`/protfolios/${p.id}`} exact button key={p.id}>
+            component={NavLink} to={`/portfolios/${p.id}`} exact button key={p.id}>
             <ListItemIcon><AssessmentIcon /></ListItemIcon>
             <ListItemText primary={p.name} />
           </ListItem>
