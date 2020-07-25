@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import NewPortfolioForm from './NewPortfolioForm';
 
 
@@ -10,7 +11,8 @@ const NewPortfolio = () => {
     showForm ?
       <NewPortfolioForm setShowForm={setShowForm} /> :
       <div style={{ textAlign: 'center' }}>
-        <Button variant="contained" color="primary" onClick={() => setShowForm(state => !state)}>
+        <Button variant="contained" color="primary" startIcon={<AddIcon />}
+          onClick={() => setShowForm(state => !state)}>
           New Portfolio
         </Button>
       </div>

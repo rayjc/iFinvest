@@ -17,11 +17,12 @@ const PortfolioList = () => {
           {portfolios.length === 0
             && <h3 style={{ textAlign: "center" }}><i>No portfolios yet!</i></h3>}
           <Grid container justify="center" alignItems="flex-start" spacing={3}>
-            {portfolios.map(p => (
-              <Grid item xs={12} md={6} key={p.id}>
-                <PortfolioCard {...p} />
-              </Grid>
-            ))}
+            {portfolios.sort((a, b) => a.name.localeCompare(b.name))
+              .map(p => (
+                <Grid item xs={12} md={6} key={p.id}>
+                  <PortfolioCard {...p} />
+                </Grid>
+              ))}
           </Grid>
         </Box>
       </Container>

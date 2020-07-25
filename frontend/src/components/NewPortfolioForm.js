@@ -59,6 +59,7 @@ const NewPortfolioForm = ({ setShowForm }) => {
           <Grid item xs={8}>
             <TextField
               required
+              autoFocus
               error={!validateLength() || nameError}
               helperText={showHelperText()}
               size="small"

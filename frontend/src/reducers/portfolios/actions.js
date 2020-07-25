@@ -120,8 +120,8 @@ function removePortfolio(id) {
     dispatch(removePortfolioRequest());
 
     try {
-      const portfolio = await PortfolioApi.removePortfolio(id);
-      dispatch(removePortfolioSuccess(portfolio));
+      await PortfolioApi.removePortfolio(id);
+      dispatch(removePortfolioSuccess(id));
     } catch (error) {
       console.error(error);
       dispatch(removePortfolioFailure(
