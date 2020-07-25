@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import Auth from './Auth';
 import Profile from './Profile';
+import Home from './Home';
 
 
 const Routes = () => (
@@ -17,8 +18,7 @@ const Routes = () => (
       <Profile />
     </PrivateRoute>
     <Route exact path="/">
-      {/* <Home /> */}
-      <p>Home page</p>
+      <Home />
     </Route>
     <Redirect to="/" />
   </Switch>
