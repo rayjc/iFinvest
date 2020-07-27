@@ -51,7 +51,10 @@
         },
         "end_date": {
             "$id": "#/properties/end_date",
-            "type": "string",
+            "type": [
+                "string",
+                "null"
+            ],
             "format": "date",
             "title": "The end_date schema",
             "description": "An explanation about the purpose of this instance.",

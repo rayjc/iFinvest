@@ -9,6 +9,7 @@ const { ensureLoggedIn } = require("../middleware/auth");
 const validateJSON = require("../helpers/validateJson");
 const ApiHelper = require("../helpers/apiHelper");
 const calcInterest = require("../helpers/calcInterest");
+const { backOff } = require('exponential-backoff');
 
 
 const router = new express.Router();
@@ -27,6 +28,7 @@ router.get("/:id", ensureLoggedIn, async (req, res, next) => {
 
 router.post("/", ensureLoggedIn, async (req, res, next) => {
   try {
+    console.log(req.body);
     validateJSON(req.body, investmentSchema);
 
     const { initial_value, symbol, portfolio_id, start_date, end_date } = req.body;
@@ -106,11 +108,14 @@ router.get("/interest/:id", ensureLoggedIn, async (req, res, next) => {
   try {
     const investment = await Investment.get(+req.params.id);
     const { symbol, start_date, end_date } = investment;
-    const initial = await ApiHelper.getSingleDataPoint(symbol, start_date);
-    // get price at sell off if sold, otherwise get current price
+    const fetchInitial = () => ApiHelper.getSingleDataPoint(symbol, start_date);
+    const fetchSingleDataPoint = () => ApiHelper.getSingleDataPoint(symbol, end_date);
+    const fetchLastClose = () => ApiHelper.getLastClose(symbol);
+
+    const initial = await backOff(() => fetchInitial());
     const final = end_date && end_date.toDateString() !== new Date().toDateString()
-      ? await ApiHelper.getSingleDataPoint(symbol, end_date)
-      : await ApiHelper.getLastClose(symbol);
+      ? await backOff(() => fetchSingleDataPoint())
+      : await backOff(() => fetchLastClose());
 
     // store initial price to db to avoid additional API calls
     investment.initial_price = initial.close;
