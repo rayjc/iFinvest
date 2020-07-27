@@ -61,7 +61,7 @@ class Investment {
 
     } catch (error) {
       if (error.code === "23503") {
-        throw new ExpressError(`Invalid entry for ${error.column}.`, 403);
+        throw new ExpressError(`Invalid symbol, ${this.symbol}.`, 403);
       }
       throw error;
     }

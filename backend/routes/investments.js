@@ -28,7 +28,6 @@ router.get("/:id", ensureLoggedIn, async (req, res, next) => {
 
 router.post("/", ensureLoggedIn, async (req, res, next) => {
   try {
-    console.log(req.body);
     validateJSON(req.body, investmentSchema);
 
     const { initial_value, symbol, portfolio_id, start_date, end_date } = req.body;

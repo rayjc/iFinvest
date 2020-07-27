@@ -3,7 +3,7 @@ import {
   UPDATE_PORTFOLIO_FAILURE, UPDATE_PORTFOLIO_REQUEST, UPDATE_PORTFOLIO_SUCCESS,
   REMOVE_PORTFOLIO_FAILURE, REMOVE_PORTFOLIO_REQUEST, REMOVE_PORTFOLIO_SUCCESS,
   LOAD_PORTFOLIOS_FAILURE, LOAD_PORTFOLIOS_REQUEST, LOAD_PORTFOLIOS_SUCCESS,
-  ADD_PORTFOLIO_INVESTMENT,
+  ADD_PORTFOLIO_INVESTMENT, REMOVE_PORTFOLIO_INVESTMENT,
 } from './actionTypes';
 import PortfolioApi from '../../api/portfolioApi';
 
@@ -183,5 +183,16 @@ function addPortfolioInvestment(portfolioId, investmentId, symbol) {
   };
 }
 
+function removePortfolioInvestment(portfolioId, investmentId) {
+  return {
+    type: REMOVE_PORTFOLIO_INVESTMENT,
+    portfolioId,
+    investmentId,
+  };
+}
 
-export { addPortfolio, removePortfolio, updatePortfolio, loadPortfolios, addPortfolioInvestment };
+
+export {
+  addPortfolio, removePortfolio, updatePortfolio, loadPortfolios,
+  addPortfolioInvestment, removePortfolioInvestment
+};

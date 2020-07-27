@@ -5,7 +5,7 @@ import {
   LOAD_INVESTMENT_FAILURE, LOAD_INVESTMENT_REQUEST, LOAD_INVESTMENT_SUCCESS,
 } from './actionTypes';
 import InvestmentApi from '../../api/investmentApi';
-import { addPortfolioInvestment } from '../portfolios/actions';
+import { addPortfolioInvestment, removePortfolioInvestment } from '../portfolios/actions';
 
 
 function addInvestmentRequest() {
@@ -38,7 +38,6 @@ function addInvestment(newInvestment) {
     try {
       const investment = await InvestmentApi.createInvestment(newInvestment);
       const interest = await InvestmentApi.getInterest(investment.id);
-      console.log(investment);
       dispatch(addInvestmentSuccess({
         ...investment, ...interest, end_date: newInvestment.end_date
       }));
@@ -119,12 +118,14 @@ function removeInvestmentSuccess(id) {
 /**
  * Remove an existing investment
  * @param {Number} id 
+ * @param {Number} portfolioId 
  */
-function removeInvestment(id) {
+function removeInvestment(id, portfolioId) {
   return async function(dispatch) {
     dispatch(removeInvestmentRequest());
 
     try {
+      dispatch(removePortfolioInvestment(portfolioId, id));
       await InvestmentApi.removeInvestment(id);
       dispatch(removeInvestmentSuccess(id));
     } catch (error) {

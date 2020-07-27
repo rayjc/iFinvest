@@ -3,7 +3,7 @@ import {
   UPDATE_PORTFOLIO_FAILURE, UPDATE_PORTFOLIO_REQUEST, UPDATE_PORTFOLIO_SUCCESS,
   REMOVE_PORTFOLIO_FAILURE, REMOVE_PORTFOLIO_REQUEST, REMOVE_PORTFOLIO_SUCCESS,
   LOAD_PORTFOLIOS_FAILURE, LOAD_PORTFOLIOS_REQUEST, LOAD_PORTFOLIOS_SUCCESS,
-  ADD_PORTFOLIO_INVESTMENT,
+  ADD_PORTFOLIO_INVESTMENT, REMOVE_PORTFOLIO_INVESTMENT,
 } from './actionTypes';
 
 
@@ -61,6 +61,20 @@ function portfoliosReducer(state = INIT_STATE, action) {
                 ...portfolio.investments,
                 { id: action.investmentId, symbol: action.symbol }
               ]
+            }
+            : portfolio
+        ),
+        isFetching: false
+      };
+
+    case REMOVE_PORTFOLIO_INVESTMENT:
+      return {
+        ...state,
+        portfolios: state.portfolios.map(
+          portfolio => portfolio.id === action.portfolioId
+            ? {
+              ...portfolio,
+              investments: portfolio.investments.filter(i => i.id !== action.investmentId)
             }
             : portfolio
         ),

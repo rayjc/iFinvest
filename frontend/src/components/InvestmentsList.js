@@ -1,4 +1,4 @@
-import { CircularProgress, Container, CssBaseline, Grid, Button } from '@material-ui/core';
+import { CircularProgress, Container, CssBaseline, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
 import React, { useEffect } from 'react';
@@ -6,6 +6,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { loadInvestment } from '../reducers/investments/actions';
 import EditInvestment from './EditInvestment';
 import InvestmentDisplay from './InvestmentDisplay';
+import RemoveInvestment from './RemoveInvestment';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -71,7 +72,7 @@ const InvestmentsForm = ({ portfolioId }) => {
               <div key={id}>
                 <Grid className={classes.actions} container justify='space-between' alignItems='center' >
                   <EditInvestment investmentId={id} />
-                  <Button>Delete</Button>
+                  <RemoveInvestment investmentId={id} portfolioId={portfolioId} />
                 </Grid>
                 <InvestmentDisplay key={id} investmentId={id} />
               </div> :
