@@ -108,7 +108,7 @@ router.get("/interest/:id", ensureLoggedIn, async (req, res, next) => {
     const { symbol, start_date, end_date } = investment;
     const initial = await ApiHelper.getSingleDataPoint(symbol, start_date);
     // get price at sell off if sold, otherwise get current price
-    const final = end_date
+    const final = end_date && end_date.toDateString() !== new Date().toDateString()
       ? await ApiHelper.getSingleDataPoint(symbol, end_date)
       : await ApiHelper.getLastClose(symbol);
 

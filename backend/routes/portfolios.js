@@ -24,6 +24,17 @@ router.get("/", ensureLoggedIn, async (req, res, next) => {
 });
 
 
+router.get("/:portfolioId", ensureLoggedIn, async (req, res, next) => {
+  try {
+    const portfolio = await Portfolio.get(+req.params.portfolioId, true);
+    return res.json({ portfolio });
+
+  } catch (error) {
+    return next(error);
+  }
+});
+
+
 router.post("/", ensureLoggedIn, async (req, res, next) => {
   try {
     validateJSON(req.body, portfolioSchema);
