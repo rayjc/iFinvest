@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Grid, InputAdornment, TextField } from '@material-ui/core';
 import moment from 'moment';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { validateWeekday } from '../helpers/validate';
-import { updateInvestment } from '../reducers/investments/actions';
+import { addInvestment } from '../reducers/investments/actions';
 
 
-const EditInvestmentForm = ({ investmentId, handleClose }) => {
-  const investment = useSelector(state => state.investments.investments[investmentId], shallowEqual);
+const NewInvestmentForm = ({ portfolioId, handleClose }) => {
   const INIT_FORM_DATA = {
-    "initial_value": investment.initial_value,
-    "symbol": investment.symbol,
-    "start_date": investment.start_date,
-    "end_date": investment.end_date || "",
+    "initial_value": "",
+    "symbol": "",
+    "start_date": "",
+    "end_date": "",
   };
   const dispatch = useDispatch();
 
@@ -28,13 +27,15 @@ const EditInvestmentForm = ({ investmentId, handleClose }) => {
     const newInvestment = {
       ...formData,
       initial_value: +formData.initial_value,
+      portfolio_id: portfolioId
     };
 
-    if (!formData.end_date
-      || moment(formData.end_date).format('YYYY-MM-DD') === moment().format('YYYY-MM-DD')) {
-      newInvestment.end_date = null;
+    if (moment(formData.end_date).format('YYYY-MM-DD') === moment().format('YYYY-MM-DD')) {
+      delete newInvestment.end_date;
     }
-    dispatch(updateInvestment(investmentId, newInvestment));
+    dispatch(addInvestment(newInvestment));
+    // dispatch(addPortfolioInvestment(portfolioId,));
+    setFormData(INIT_FORM_DATA);
     handleClose();
   };
 
@@ -44,6 +45,7 @@ const EditInvestmentForm = ({ investmentId, handleClose }) => {
         <Grid item xs={6}>
           <TextField
             required
+            autoComplete='off'
             id="symbol"
             label="Symbol"
             name="symbol"
@@ -78,18 +80,19 @@ const EditInvestmentForm = ({ investmentId, handleClose }) => {
               shrink: true,
             }}
             onChange={handleChange}
-            error={!validateWeekday(formData.start_date)}
-            helperText={!validateWeekday(formData.start_date) ? `Closed on weekend...` : ''}
+            error={formData.start_date.length !== 0 && !validateWeekday(formData.start_date)}
+            helperText={formData.start_date && !validateWeekday(formData.start_date) ? `Closed on weekend...` : ''}
             InputProps={{
               inputProps: {
                 min: moment().subtract(5, "years").format("YYYY-MM-DD"),
-                max: moment(formData.end_date).format('YYYY-MM-DD') || moment().format('YYYY-MM-DD'),
+                max: formData.end_date ? moment(formData.end_date).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD'),
               },
             }}
           />
         </Grid>
         <Grid item xs={6}>
           <TextField
+            required
             id="end-date"
             label="End Date"
             type="date"
@@ -101,7 +104,7 @@ const EditInvestmentForm = ({ investmentId, handleClose }) => {
             onChange={handleChange}
             // end_date could be null
             error={formData.end_date.length !== 0 && !validateWeekday(formData.end_date)}
-            helperText={formData.end_date.length !== 0 && !validateWeekday(formData.end_date) ? `Closed on weekend...` : ''}
+            helperText={formData.end_date && !validateWeekday(formData.end_date) ? `Closed on weekend...` : ''}
             InputProps={{
               inputProps: {
                 min: moment(formData.start_date).format("YYYY-MM-DD"),
@@ -113,7 +116,7 @@ const EditInvestmentForm = ({ investmentId, handleClose }) => {
         <Grid item>
           <Button variant="contained" type="submit"
             disabled={!validateWeekday(formData.end_date) || !validateWeekday(formData.start_date)}>
-            Save
+            Add
           </Button>
         </Grid>
       </Grid>
@@ -123,4 +126,4 @@ const EditInvestmentForm = ({ investmentId, handleClose }) => {
 };
 
 
-export default EditInvestmentForm;
+export default NewInvestmentForm;

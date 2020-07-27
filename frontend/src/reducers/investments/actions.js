@@ -5,6 +5,7 @@ import {
   LOAD_INVESTMENT_FAILURE, LOAD_INVESTMENT_REQUEST, LOAD_INVESTMENT_SUCCESS,
 } from './actionTypes';
 import InvestmentApi from '../../api/investmentApi';
+import { addPortfolioInvestment } from '../portfolios/actions';
 
 
 function addInvestmentRequest() {
@@ -37,7 +38,12 @@ function addInvestment(newInvestment) {
     try {
       const investment = await InvestmentApi.createInvestment(newInvestment);
       const interest = await InvestmentApi.getInterest(investment.id);
-      dispatch(addInvestmentSuccess({ ...investment, ...interest }));
+      console.log(investment);
+      dispatch(addInvestmentSuccess({
+        ...investment, ...interest, end_date: newInvestment.end_date
+      }));
+      // update investments in portfolios
+      dispatch(addPortfolioInvestment(investment.portfolio_id, investment.id, investment.symbol));
     } catch (error) {
       console.error(error);
       dispatch(addInvestmentFailure("Failed to create a new investment via backend API."));
@@ -160,7 +166,13 @@ function loadInvestment(id) {
     try {
       const investment = await InvestmentApi.getInvestment(id);
       const interest = await InvestmentApi.getInterest(investment.id);
-      dispatch(loadInvestmentSuccess(id, { ...investment, ...interest }));
+      dispatch(loadInvestmentSuccess(
+        id,
+        {
+          ...investment, ...interest,
+          end_date: investment.end_date ? investment.end_date.split('T')[0] : null
+        }
+      ));
     } catch (error) {
       console.error(error);
       dispatch(loadInvestmentFailure(`Failed to load investment:${id} via backend API.`));

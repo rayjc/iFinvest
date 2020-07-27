@@ -64,7 +64,7 @@ const InvestmentDisplay = ({ investmentId }) => {
           label="End Date"
           type="date"
           name="end_data"
-          value={end_date}
+          value={end_date ? end_date : ""}
           InputLabelProps={{
             shrink: true,
           }}

@@ -64,19 +64,21 @@ const InvestmentsForm = ({ portfolioId }) => {
       {investments.length === 0
         && <h3 className={classes.header}><i>No investments yet!</i></h3>}
       <div className={classes.paper}>
-        {Object.values(investments).map(({ id }) =>
-          table.hasOwnProperty(id) ?
-            <div key={id}>
-              <Grid className={classes.actions} container justify='space-between' alignItems='center' >
-                <EditInvestment investmentId={id} />
-                <Button>Delete</Button>
-              </Grid>
-              <InvestmentDisplay key={id} investmentId={id} />
-            </div> :
-            <div className={classes.loading} key={`loading-${id}`}>
-              <CircularProgress />
-            </div>
-        )}
+        {Object.values(investments)
+          .sort((a, b) => a.id - b.id)
+          .map(({ id }) =>
+            table.hasOwnProperty(id) ?
+              <div key={id}>
+                <Grid className={classes.actions} container justify='space-between' alignItems='center' >
+                  <EditInvestment investmentId={id} />
+                  <Button>Delete</Button>
+                </Grid>
+                <InvestmentDisplay key={id} investmentId={id} />
+              </div> :
+              <div className={classes.loading} key={`loading-${id}`}>
+                <CircularProgress />
+              </div>
+          )}
       </div>
     </Container>
   );
