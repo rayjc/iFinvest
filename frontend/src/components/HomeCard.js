@@ -8,6 +8,10 @@ const useStyles = makeStyles({
   root: {
     textAlign: 'center',
     minWidth: 275,
+    padding: 20,
+  },
+  title: {
+    padding: 10,
   }
 });
 
@@ -17,7 +21,7 @@ const HomeCard = () => {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography component="h3" variant="h4">
+        <Typography className={classes.title} component="h3" variant="h4">
           <strong>Welcome to iFinvest!</strong>
         </Typography>
         <Typography component="h5" variant="h6">

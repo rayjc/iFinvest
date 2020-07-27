@@ -14,6 +14,16 @@ class PortfolioApi {
   }
 
   /**
+   * Get a detailed portfolio under current user;
+   * return
+   *    {id, name, user_id, created_at, investments:[ {id, symbol, initial_value, start_date, end_date}, ... ]},
+   *    ...
+   */
+  static async getPortfolio(id) {
+    return (await ApiHelper.request(`portfolios/${id}`)).portfolio;
+  }
+
+  /**
    * Create a new portfolio under current user;
    * return {id, name, user_id, created_at, investments:[]}
    * @param {String} name 

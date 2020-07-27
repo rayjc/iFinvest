@@ -4,12 +4,13 @@ import PrivateRoute from './PrivateRoute';
 import Auth from './Auth';
 import Profile from './Profile';
 import Home from './Home';
+import PortfolioDetail from './PortfolioDetail';
 
 
 const Routes = () => (
   <Switch>
     <PrivateRoute path="/portfolios/:id">
-      <p>Investment forms and chart under this portfolio</p>
+      <PortfolioDetail />
     </PrivateRoute>
     <Route exact path="/auth" >
       <Auth />

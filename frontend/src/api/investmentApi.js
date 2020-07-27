@@ -40,7 +40,7 @@ class InvestmentApi {
   static async updateInvestment(id, investment) {
     return (
       await ApiHelper.request(`investments/${id}`, investment, "patch")
-    ).portfolio;
+    ).investment;
   }
 
   /**

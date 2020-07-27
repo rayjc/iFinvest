@@ -79,7 +79,10 @@ function updateInvestment(id, newInvestment) {
     try {
       const investment = await InvestmentApi.updateInvestment(id, newInvestment);
       const interest = await InvestmentApi.getInterest(investment.id);
-      dispatch(updateInvestmentSuccess(id, { ...investment, ...interest }));
+      dispatch(updateInvestmentSuccess(
+        id,
+        { ...investment, ...interest, end_date: newInvestment.end_date }
+      ));
     } catch (error) {
       console.error(error);
       dispatch(updateInvestmentFailure(`Failed to update investment:${id} via backend API.`));
@@ -116,7 +119,7 @@ function removeInvestment(id) {
     dispatch(removeInvestmentRequest());
 
     try {
-      const investment = await InvestmentApi.removeInvestment(id);
+      await InvestmentApi.removeInvestment(id);
       dispatch(removeInvestmentSuccess(id));
     } catch (error) {
       console.error(error);
@@ -128,19 +131,19 @@ function removeInvestment(id) {
 
 
 function loadInvestmentRequest() {
-  return { type: REMOVE_INVESTMENT_REQUEST };
+  return { type: LOAD_INVESTMENT_REQUEST };
 }
 
 function loadInvestmentFailure(error) {
   return {
-    type: REMOVE_INVESTMENT_FAILURE,
+    type: LOAD_INVESTMENT_FAILURE,
     error,
   };
 }
 
 function loadInvestmentSuccess(id, investment) {
   return {
-    type: REMOVE_INVESTMENT_SUCCESS,
+    type: LOAD_INVESTMENT_SUCCESS,
     id,
     investment,
   };
@@ -155,7 +158,7 @@ function loadInvestment(id) {
     dispatch(loadInvestmentRequest());
 
     try {
-      const investment = await InvestmentApi.loadInvestment(id);
+      const investment = await InvestmentApi.getInvestment(id);
       const interest = await InvestmentApi.getInterest(investment.id);
       dispatch(loadInvestmentSuccess(id, { ...investment, ...interest }));
     } catch (error) {

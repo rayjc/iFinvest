@@ -10,12 +10,12 @@ const PortfolioList = () => {
 
   return (
     <div className="PortfolioList">
-      <Container>
+      <Container style={{textAlign: 'center'}}>
         <Box my={4}>
           {isFetching && <CircularProgress />}
           {error && <Alert severity="error">{error}</Alert>}
           {portfolios.length === 0
-            && <h3 style={{ textAlign: "center" }}><i>No portfolios yet!</i></h3>}
+            && <h3><i>No portfolios yet!</i></h3>}
           <Grid container justify="center" alignItems="flex-start" spacing={3}>
             {portfolios.sort((a, b) => a.name.localeCompare(b.name))
               .map(p => (
