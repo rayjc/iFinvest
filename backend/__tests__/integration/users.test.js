@@ -37,37 +37,36 @@ afterAll(async function() {
 });
 
 
-describe("Users routes test", function() {
 
-  describe("GET /users", function() {
 
-    test("Gets a list of 1 user", async function() {
-      const response = await request(app)
-        .get("/users")
-        .send({ token: `${TEST_DATA.userToken}` });
-      expect(response.body.users).toHaveLength(1);
-      expect(response.body.users[0]).toHaveProperty("username");
-      expect(response.body.users[0]).not.toHaveProperty("password");
-    });
+describe("GET /users", function() {
 
-    test("Gets a single a user", async function() {
-      const response = await request(app)
-        .get(`/users/${TEST_DATA.currentUserId}`)
-        .send({ token: `${TEST_DATA.userToken}` });
-      expect(response.body.user).toHaveProperty("username");
-      expect(response.body.user).not.toHaveProperty("password");
-      expect(response.body.user.username).toBe("test");
-    });
-
-    test("Responds with a 401 user not found ie. not the same user", async function() {
-      const response = await request(app)
-        .get(`/users/${TEST_DATA.currentUserId + 10}`)
-        .send({ token: `${TEST_DATA.userToken}` });
-      expect(response.statusCode).toBe(401);
-    });
+  test("Gets a list of 1 user", async function() {
+    const response = await request(app)
+      .get("/users")
+      .send({ token: `${TEST_DATA.userToken}` });
+    expect(response.body.users).toHaveLength(1);
+    expect(response.body.users[0]).toHaveProperty("username");
+    expect(response.body.users[0]).not.toHaveProperty("password");
   });
 
+  test("Gets a single a user", async function() {
+    const response = await request(app)
+      .get(`/users/${TEST_DATA.currentUserId}`)
+      .send({ token: `${TEST_DATA.userToken}` });
+    expect(response.body.user).toHaveProperty("username");
+    expect(response.body.user).not.toHaveProperty("password");
+    expect(response.body.user.username).toBe("test");
+  });
+
+  test("Responds with a 401 user not found ie. not the same user", async function() {
+    const response = await request(app)
+      .get(`/users/${TEST_DATA.currentUserId + 10}`)
+      .send({ token: `${TEST_DATA.userToken}` });
+    expect(response.statusCode).toBe(401);
+  });
 });
+
 
 describe("PATCH /users/:userId", async () => {
   test("Updates a single a user's first_name with a selective update", async function() {
