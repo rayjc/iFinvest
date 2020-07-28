@@ -1,6 +1,6 @@
 const axios = require('axios');
 const db = require('../db');
-const { IEX_TOKEN } = require('../config');
+const { IEX_TOKEN, IEX_URL } = require('../config');
 
 async function initDb() {
   const token = IEX_TOKEN;
@@ -11,8 +11,7 @@ async function initDb() {
   try {
     // fetch all available symbols from api
     const res = await axios.get(
-      // "https://cloud.iexapis.com/stable/ref-data/symbols", { params: token }
-      "https://sandbox.iexapis.com/stable/ref-data/symbols", { params: { token } }
+      `${IEX_URL}/ref-data/symbols`, { params: { token } }
     );
 
     // remove rows in stocks table
