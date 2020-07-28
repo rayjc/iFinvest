@@ -1,6 +1,7 @@
-import { CircularProgress, Container, CssBaseline, Grid } from '@material-ui/core';
+import { Chip, CircularProgress, Container, CssBaseline, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { loadInvestment } from '../reducers/investments/actions';
@@ -35,7 +36,10 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     margin: theme.spacing(6),
-  }
+  },
+  chip: {
+    backgroundColor: 'palegreen',
+  },
 }));
 
 
@@ -72,6 +76,11 @@ const InvestmentsForm = ({ portfolioId }) => {
               <div key={id}>
                 <Grid className={classes.actions} container justify='space-between' alignItems='center' >
                   <EditInvestment investmentId={id} />
+                  <Chip
+                    className={classes.chip}
+                    icon={<AttachMoneyIcon />}
+                    label={(table[id].initial_value * (table[id].interest + 1.0)).toFixed(2)}
+                  />
                   <RemoveInvestment investmentId={id} portfolioId={portfolioId} />
                 </Grid>
                 <InvestmentDisplay key={id} investmentId={id} />
