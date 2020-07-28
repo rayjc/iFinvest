@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import NavBar from './NavBar';
 import { useSelector, useDispatch } from 'react-redux';
 
