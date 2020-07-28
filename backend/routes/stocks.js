@@ -9,7 +9,7 @@ const router = new express.Router();
 router.get('/', async (req, res, next) => {
   try {
     const { symbol } = req.query;
-    const stocks = symbol ? await Stock.findAll(symbol) : await Stock.getAll();
+    const stocks = await Stock.findAll(symbol);
     return res.json({ stocks });
 
   } catch (error) {

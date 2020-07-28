@@ -28,10 +28,11 @@ class Stock {
   }
 
   static async findAll(symbol) {
+    console.log(symbol);
     const result = await db.query(
       `SELECT symbol, name, exchange FROM stocks
-        WHERE symbol ILIKE $1`,
-      [`%${symbol}%`]
+        WHERE symbol ILIKE $1 LIMIT 100`,
+      [`${symbol}%`]
     );
 
     return result.rows.map(r => new Stock(...Object.values(r)));
