@@ -123,7 +123,6 @@ router.get("/chart/:portfolioId", ensureLoggedIn, async (req, res, next) => {
     }
 
     const { investments } = portfolio;
-    // TODO: remember to disable weekend dates on date picker
     // extract min and max time window
     const startDates = investments.map(inv => inv.start_date);
     const earliestDate = new Date(Math.min(...startDates));
@@ -187,6 +186,11 @@ router.get("/chart/:portfolioId", ensureLoggedIn, async (req, res, next) => {
             symbol, date: sold.date,
             interest: calcInterest(sold.close, initialPrice)
           });
+          // update table to store the lastest closing interest
+          if (!table.hasOwnProperty(sold.date)) {
+            table[sold.date] = {};
+          }
+          table[sold.date][symbol] = calcInterest(sold.close, initialPrice);
         }
 
       } catch (error) {
@@ -201,7 +205,13 @@ router.get("/chart/:portfolioId", ensureLoggedIn, async (req, res, next) => {
     // process table to required chart format
     const interests = Object.entries(table)
       .sort((a, b) => new Date(a[0]) - new Date(b[0]))
-      .map(([date, val]) => ({ date, ...val }));
+      .map(([date, val], idx, arr) => {
+        if (idx > 0 && idx < arr.length - 1) {
+          // take the last value for any missing data points
+          return { date, ...arr[idx - 1][1], ...val };
+        }
+        return { date, ...val };
+      });
 
     return res.json({ interests, cutoffs });
 
