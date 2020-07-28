@@ -6,7 +6,7 @@ const SECRET_KEY = process.env.SECRET_KEY || "test";
 
 const PORT = +process.env.PORT || 3002;
 
-const DB_URI = process.env.NODE_ENV === "test" ? "ifinvest_test" : "ifinvest";
+const DB_URI = process.env.NODE_ENV === "test" ? "ifinvest_test" : process.env.DATABASE_URL || "ifinvest";
 
 const BCRYPT_WORK_FACTOR = 12;
 
