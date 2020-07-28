@@ -31,9 +31,7 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("user updated...");
     if (user) {
-      console.log("fetching portfolios...");
       dispatch(loadPortfolios());
     }
   }, [user, dispatch]);
