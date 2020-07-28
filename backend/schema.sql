@@ -43,7 +43,7 @@ CREATE TABLE investments (
 );
 
 
-
+/*
 INSERT INTO stocks (symbol, name, exchange, ipo_date, region, currency, type)
     VALUES ('GOOG', 'Google', 'NASDAQ', '2000-01-01', 'us', 'USD', 'te');
 INSERT INTO stocks (symbol, name, exchange, ipo_date, region, currency, type)
@@ -67,3 +67,4 @@ INSERT INTO investments (start_date, initial_value, symbol, portfolio_id)
     VALUES ('2010-03-25', 1000, 'AAPL', 1);
 INSERT INTO investments (start_date, initial_value, symbol, portfolio_id)
     VALUES ('2010-04-10', 1000, 'GOOG', 2);
+*/
