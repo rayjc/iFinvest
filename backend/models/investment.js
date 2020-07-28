@@ -62,6 +62,8 @@ class Investment {
     } catch (error) {
       if (error.code === "23503") {
         throw new ExpressError(`Invalid symbol, ${this.symbol}.`, 403);
+      } else if (error.code === "23505") {
+        throw new ExpressError(error.detail, 403);
       }
       throw error;
     }
@@ -89,6 +91,8 @@ class Investment {
     } catch (error) {
       if (error.code === "23503") {
         throw new ExpressError(`Invalid symbol, ${this.symbol}.`, 403);
+      } else if (error.code === "23505") {
+        throw new ExpressError(error.detail, 403);
       }
       throw error;
     }

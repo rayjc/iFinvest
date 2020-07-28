@@ -53,6 +53,13 @@ async function beforeEachHook(TEST_DATA) {
     );
     TEST_DATA.stock = stock.rows[0];
 
+    const appleStock = await db.query(
+      `INSERT INTO stocks (symbol, name, exchange, ipo_date, region, currency, type)
+        VALUES ('AAPL', 'Apple', 'NASDAQ', '2002-01-01', 'us', 'USD', 'te')
+        RETURNING *`
+    );
+    TEST_DATA.appleStock = appleStock.rows[0];
+
     const portfolio = await db.query(
       `INSERT INTO portfolios (name, created_at, user_id)
         VALUES ('alpha', '2020-01-20', $1) RETURNING *`,
