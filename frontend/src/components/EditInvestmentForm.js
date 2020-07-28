@@ -4,19 +4,21 @@ import moment from 'moment';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { validateWeekday } from '../helpers/validate';
 import { updateInvestment } from '../reducers/investments/actions';
+import SymbolField from './SymbolField';
 
 
 const EditInvestmentForm = ({ investmentId, handleClose }) => {
   const investment = useSelector(state => state.investments.investments[investmentId], shallowEqual);
   const INIT_FORM_DATA = {
     "initial_value": investment.initial_value,
-    "symbol": investment.symbol,
     "start_date": investment.start_date,
     "end_date": investment.end_date || "",
   };
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState(INIT_FORM_DATA);
+
+  const [autoValue, setAutoValue] = useState({ symbol: investment.symbol });
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -27,6 +29,7 @@ const EditInvestmentForm = ({ investmentId, handleClose }) => {
     evt.preventDefault();
     const newInvestment = {
       ...formData,
+      ...autoValue,
       initial_value: +formData.initial_value,
     };
 
@@ -42,14 +45,7 @@ const EditInvestmentForm = ({ investmentId, handleClose }) => {
     <form onSubmit={handleSubmit}>
       <Grid container spacing={2} justify='center'>
         <Grid item xs={6}>
-          <TextField
-            required
-            id="symbol"
-            label="Symbol"
-            name="symbol"
-            value={formData.symbol}
-            onChange={handleChange}
-          />
+          <SymbolField value={autoValue} setValue={setAutoValue} />
         </Grid>
         <Grid item xs={6}>
           <TextField

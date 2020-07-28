@@ -4,18 +4,20 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { validateWeekday } from '../helpers/validate';
 import { addInvestment } from '../reducers/investments/actions';
+import SymbolField from './SymbolField';
 
 
 const NewInvestmentForm = ({ portfolioId, handleClose }) => {
   const INIT_FORM_DATA = {
     "initial_value": "",
-    "symbol": "",
     "start_date": "",
     "end_date": "",
   };
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState(INIT_FORM_DATA);
+
+  const [autoValue, setAutoValue] = useState({ symbol: "" });
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -26,6 +28,7 @@ const NewInvestmentForm = ({ portfolioId, handleClose }) => {
     evt.preventDefault();
     const newInvestment = {
       ...formData,
+      ...autoValue,
       initial_value: +formData.initial_value,
       portfolio_id: portfolioId
     };
@@ -43,15 +46,7 @@ const NewInvestmentForm = ({ portfolioId, handleClose }) => {
     <form onSubmit={handleSubmit}>
       <Grid container spacing={2} justify='center'>
         <Grid item xs={6}>
-          <TextField
-            required
-            autoComplete='off'
-            id="symbol"
-            label="Symbol"
-            name="symbol"
-            value={formData.symbol}
-            onChange={handleChange}
-          />
+          <SymbolField value={autoValue} setValue={setAutoValue} />
         </Grid>
         <Grid item xs={6}>
           <TextField
