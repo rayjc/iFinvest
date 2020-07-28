@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const InvestmentsForm = ({ portfolioId }) => {
+const InvestmentsList = ({ portfolioId }) => {
   const classes = useStyles();
   const portfolio = useSelector(
     state => state.portfolios.portfolios.find(p => p.id === portfolioId)
@@ -96,4 +96,4 @@ const InvestmentsForm = ({ portfolioId }) => {
 };
 
 
-export default InvestmentsForm;
+export default InvestmentsList;
