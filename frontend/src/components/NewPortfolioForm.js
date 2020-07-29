@@ -40,7 +40,7 @@ const NewPortfolioForm = ({ setShowForm }) => {
     setName(evt.target.value);
   };
 
-  const validateLength = () => name.length < 16;
+  const validateLength = () => name.length < 12;
 
   const showHelperText = () => {
     if (!validateLength()) {

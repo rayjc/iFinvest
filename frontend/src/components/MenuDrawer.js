@@ -20,9 +20,6 @@ const useStyles = makeStyles({
   list: {
     width: 250,
   },
-  fullList: {
-    width: 'auto',
-  },
   portfolio: {
     paddingLeft: 70,
   }
@@ -36,7 +33,7 @@ const MenuDrawer = ({ isOpen, setIsOpen, handleLogout }) => {
   );
 
   const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
@@ -45,7 +42,7 @@ const MenuDrawer = ({ isOpen, setIsOpen, handleLogout }) => {
 
   const list = () => (
     <div
-      className={`${classes.list} ${classes.fullList}`}
+      className={classes.list}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
@@ -93,6 +90,7 @@ const MenuDrawer = ({ isOpen, setIsOpen, handleLogout }) => {
 
   return (
     <SwipeableDrawer
+      anchor='left'
       open={isOpen}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
