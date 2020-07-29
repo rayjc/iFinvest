@@ -1,118 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matches snapshot 1`] = `
-<DocumentFragment>
+<div
+  class="PortfolioList"
+>
   <div
-    class="PortfolioList"
+    class="MuiContainer-root MuiContainer-maxWidthLg"
+    style="text-align: center;"
   >
     <div
-      class="MuiContainer-root MuiContainer-maxWidthLg"
-      style="text-align: center;"
+      class="MuiBox-root MuiBox-root-5"
     >
       <div
-        class="MuiBox-root MuiBox-root-5"
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-center"
       >
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-center"
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
         >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+            class="MuiPaper-root MuiCard-root makeStyles-root-6 MuiPaper-elevation1 MuiPaper-rounded"
           >
-            <div
-              class="MuiPaper-root MuiCard-root makeStyles-root-6 MuiPaper-elevation1 MuiPaper-rounded"
+            <a
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiCardActionArea-root makeStyles-actionArea-7"
+              href="/portfolios/0"
+              role="button"
+              tabindex="0"
             >
-              <a
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiCardActionArea-root makeStyles-actionArea-7"
-                href="/portfolios/0"
-                role="button"
-                tabindex="0"
+              <h3
+                class="MuiTypography-root MuiTypography-h5"
               >
-                <h3
-                  class="MuiTypography-root MuiTypography-h5"
-                >
-                  alpha
-                </h3>
-                <p
-                  class="MuiTypography-root MuiTypography-subtitle1 MuiTypography-gutterBottom"
-                >
-                  Jan 10th, 2020
-                </p>
-                <div
-                  class="MuiCardContent-root"
-                />
+                alpha
+              </h3>
+              <p
+                class="MuiTypography-root MuiTypography-subtitle1 MuiTypography-gutterBottom"
+              >
+                Jan 10th, 2020
+              </p>
+              <div
+                class="MuiCardContent-root"
+              />
+              <span
+                class="MuiCardActionArea-focusHighlight"
+              />
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </a>
+            <div
+              class="MuiCardActions-root MuiCardActions-spacing"
+              style="justify-content: flex-end;"
+            >
+              <button
+                class="MuiButtonBase-root MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
                 <span
-                  class="MuiCardActionArea-focusHighlight"
-                />
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-colorSecondary"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                    />
+                  </svg>
+                </span>
                 <span
                   class="MuiTouchRipple-root"
                 />
-              </a>
-              <div
-                class="MuiCardActions-root MuiCardActions-spacing"
-                style="justify-content: flex-end;"
-              >
-                <button
-                  class="MuiButtonBase-root MuiIconButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <span
-                    class="MuiIconButton-label"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-colorSecondary"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
-                      />
-                    </svg>
-                  </span>
-                  <span
-                    class="MuiTouchRipple-root"
-                  />
-                </button>
-              </div>
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div
-    style="text-align: center;"
-  >
-    <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <span
-          class="MuiButton-startIcon MuiButton-iconSizeMedium"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-            />
-          </svg>
-        </span>
-        New Portfolio
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
-  </div>
-</DocumentFragment>
+</div>
 `;

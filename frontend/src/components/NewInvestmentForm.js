@@ -109,7 +109,7 @@ const NewInvestmentForm = ({ portfolioId, handleClose }) => {
           />
         </Grid>
         <Grid item>
-          <Button variant="contained" type="submit"
+          <Button variant="contained" type="submit" data-testid="add-investment-btn"
             disabled={!validateWeekday(formData.end_date) || !validateWeekday(formData.start_date)}>
             Add
           </Button>

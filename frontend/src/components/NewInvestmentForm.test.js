@@ -4,7 +4,10 @@ import { fireEvent, render } from '@testing-library/react';
 import NewInvestmentForm from './NewInvestmentForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { addInvestment } from '../reducers/investments/actions';
+import ApiHelper from '../api/apiHelper';
 
+
+jest.mock('../api/apiHelper');
 
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
@@ -18,6 +21,8 @@ jest.mock('../reducers/investments/actions', () => ({
 
 
 beforeEach(function() {
+
+  ApiHelper.mockClear();
 
   useSelector.mockImplementation((selectorFn) =>
     selectorFn({
@@ -62,6 +67,7 @@ it("matches snapshot", function() {
 });
 
 describe("form values can be update", function() {
+  ApiHelper.request.mockResolvedValue({ stocks: [{ symbol: 'test' }] });
 
   it("symbol input can be changed", function() {
     const { getByLabelText } = render(
@@ -71,8 +77,8 @@ describe("form values can be update", function() {
     );
 
     const symbolInput = getByLabelText("Symbol", { exact: false });
-    fireEvent.change(symbolInput, { target: { value: 'test symbol' } });
-    expect(symbolInput.value).toBe("test symbol");
+    fireEvent.change(symbolInput, { target: { value: 'test' } });
+    expect(symbolInput.value).toBe("test");
   });
 
   it("investment input can be changed", function() {
@@ -113,12 +119,12 @@ describe("form values can be update", function() {
 });
 
 
-it("Dispatches addInvestment() on submit", function() {
+it("Dispatches addInvestment() on submit", async function() {
 
   const mockedDispatch = jest.fn();
   useDispatch.mockReturnValue(mockedDispatch);
 
-  const { getByLabelText, getByText } = render(
+  const { getByLabelText, getByText, findByTestId } = render(
     <MemoryRouter>
       <NewInvestmentForm portfolioId={0} handleClose={jest.fn()} />
     </MemoryRouter>
@@ -133,7 +139,14 @@ it("Dispatches addInvestment() on submit", function() {
   const endDateInput = getByLabelText("End Date", { exact: false });
   fireEvent.change(endDateInput, { target: { value: '2020-07-15' } });
 
-  const submitBtn = getByText("Add", { exact: false });
+  const submitBtn = await findByTestId("add-investment-btn", { exact: false });
   fireEvent.click(submitBtn);
 
+  expect(mockedDispatch).toHaveBeenCalled();
+  expect(mockedDispatch).toHaveBeenCalledWith(addInvestment({
+    symbol: "test",
+    initial_value: "100",
+    start_date: "2020-07-14",
+    end_date: "2020-0715",
+  }));
 });
