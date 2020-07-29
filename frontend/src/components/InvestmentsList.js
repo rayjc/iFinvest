@@ -1,4 +1,4 @@
-import { Chip, CircularProgress, Container, CssBaseline, Grid } from '@material-ui/core';
+import { Chip, CircularProgress, Container, CssBaseline, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
@@ -16,10 +16,18 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     marginTop: theme.spacing(4),
-    padding: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: ` 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)`,
+    borderRadius: '1rem',
+  },
+  title: {
+    padding: theme.spacing(2),
+  },
+  card: {
+    padding: theme.spacing(2),
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -69,11 +77,28 @@ const InvestmentsList = ({ portfolioId }) => {
       {investments.length === 0
         && <h3 className={classes.header}><i>No investments yet!</i></h3>}
       <div className={classes.paper}>
+        <Grid container alignItems="center" className={classes.title}>
+          <Grid item xs={8}>
+            <Typography gutterBottom variant="h5">
+              {portfolio.name}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography gutterBottom variant="h6">
+              $
+              {(Object.values(investments).reduce((sum, { id }) =>
+              table.hasOwnProperty(id)
+                ? sum + table[id].initial_value * (table[id].interest + 1.0)
+                : sum, 0)).toFixed(2)
+              }
+            </Typography>
+          </Grid>
+        </Grid>
         {Object.values(investments)
           .sort((a, b) => a.id - b.id)
           .map(({ id }) =>
             table.hasOwnProperty(id) ?
-              <div key={id}>
+              <div key={id} className={classes.card}>
                 <Grid className={classes.actions} container justify='space-between' alignItems='center' >
                   <EditInvestment investmentId={id} />
                   <Chip

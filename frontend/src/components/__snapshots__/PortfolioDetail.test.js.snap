@@ -5,13 +5,35 @@ exports[`matches snapshot 1`] = `
   style="padding-bottom: 80px;"
 >
   <main
-    class="MuiContainer-root makeStyles-root-11 MuiContainer-maxWidthXs"
+    class="MuiContainer-root makeStyles-root-13 MuiContainer-maxWidthXs"
   >
     <div
-      class="makeStyles-paper-12"
+      class="makeStyles-paper-14"
     >
       <div
-        class="makeStyles-loading-16"
+        class="MuiGrid-root makeStyles-title-15 MuiGrid-container MuiGrid-align-items-xs-center"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8"
+        >
+          <h5
+            class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+          >
+            alpha
+          </h5>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom"
+          >
+            $0.00
+          </h6>
+        </div>
+      </div>
+      <div
+        class="makeStyles-loading-20"
       >
         <div
           class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
@@ -36,7 +58,7 @@ exports[`matches snapshot 1`] = `
     </div>
   </main>
   <div
-    style="text-align: center;"
+    style="text-align: center; margin: 20px;"
   >
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
@@ -72,7 +94,7 @@ exports[`matches snapshot 1`] = `
   >
     <button
       aria-label="add"
-      class="MuiButtonBase-root MuiFab-root makeStyles-fab-19 MuiFab-extended MuiFab-secondary"
+      class="MuiButtonBase-root MuiFab-root makeStyles-fab-23 MuiFab-extended MuiFab-secondary"
       tabindex="0"
       type="button"
     >
@@ -81,7 +103,7 @@ exports[`matches snapshot 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root makeStyles-extendedIcon-20"
+          class="MuiSvgIcon-root makeStyles-extendedIcon-24"
           focusable="false"
           viewBox="0 0 24 24"
         >

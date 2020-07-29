@@ -21,7 +21,7 @@ const NewInvestment = ({ portfolioId }) => {
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center', margin: '20px' }}>
       <Button variant="contained" color="primary" startIcon={<AddIcon />}
         onClick={handleClickOpen}>
         New Investment

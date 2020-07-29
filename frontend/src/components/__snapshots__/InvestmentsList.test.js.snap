@@ -1,236 +1,258 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matches snapshot 1`] = `
-<DocumentFragment>
-  <main
-    class="MuiContainer-root makeStyles-root-12 MuiContainer-maxWidthXs"
+<main
+  class="MuiContainer-root makeStyles-root-14 MuiContainer-maxWidthXs"
+>
+  <div
+    class="makeStyles-paper-15"
   >
     <div
-      class="makeStyles-paper-13"
+      class="MuiGrid-root makeStyles-title-16 MuiGrid-container MuiGrid-align-items-xs-center"
     >
-      <div>
-        <div
-          class="MuiGrid-root makeStyles-actions-16 MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-space-between"
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8"
+      >
+        <h5
+          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
         >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-          <div
-            class="MuiChip-root makeStyles-chip-19"
+          alpha
+        </h5>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item"
+      >
+        <h6
+          class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom"
+        >
+          $NaN
+        </h6>
+      </div>
+    </div>
+    <div
+      class="makeStyles-card-17"
+    >
+      <div
+        class="MuiGrid-root makeStyles-actions-20 MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-space-between"
+      >
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiIconButton-label"
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiChip-icon"
+              class="MuiSvgIcon-root"
               focusable="false"
               viewBox="0 0 24 24"
             >
               <path
-                d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
+                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
               />
             </svg>
-            <span
-              class="MuiChip-label"
-            >
-              NaN
-            </span>
-          </div>
-          <button
-            class="MuiButtonBase-root MuiIconButton-root"
-            style="color: red;"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </div>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
         <div
-          class="MuiGrid-root makeStyles-root-22 MuiGrid-container MuiGrid-spacing-xs-2"
+          class="MuiChip-root makeStyles-chip-23"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiChip-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
+            />
+          </svg>
+          <span
+            class="MuiChip-label"
+          >
+            NaN
+          </span>
+        </div>
+        <button
+          class="MuiButtonBase-root MuiIconButton-root"
+          style="color: red;"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              />
+            </svg>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <div
+        class="MuiGrid-root makeStyles-root-26 MuiGrid-container MuiGrid-spacing-xs-2"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
         >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+            class="MuiFormControl-root MuiTextField-root"
           >
-            <div
-              class="MuiFormControl-root MuiTextField-root"
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-disabled Mui-disabled MuiFormLabel-filled Mui-required Mui-required"
+              data-shrink="true"
+              for="symbol-0"
+              id="symbol-0-label"
             >
-              <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-disabled Mui-disabled MuiFormLabel-filled Mui-required Mui-required"
-                data-shrink="true"
-                for="symbol-0"
-                id="symbol-0-label"
+              Symbol
+              <span
+                aria-hidden="true"
+                class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
               >
-                Symbol
-                <span
-                  aria-hidden="true"
-                  class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                >
-                   *
-                </span>
-              </label>
-              <div
-                class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl"
-              >
-                <input
-                  aria-invalid="false"
-                  class="MuiInputBase-input MuiInput-input Mui-disabled Mui-disabled"
-                  disabled=""
-                  id="symbol-0"
-                  name="symbol"
-                  required=""
-                  type="text"
-                  value="test"
-                />
-              </div>
+                 *
+              </span>
+            </label>
+            <div
+              class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiInput-input Mui-disabled Mui-disabled"
+                disabled=""
+                id="symbol-0"
+                name="symbol"
+                required=""
+                type="text"
+                value="test"
+              />
             </div>
           </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+        >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+            class="MuiFormControl-root MuiTextField-root"
           >
-            <div
-              class="MuiFormControl-root MuiTextField-root"
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-disabled Mui-disabled MuiFormLabel-filled Mui-required Mui-required"
+              data-shrink="true"
+              for="initial-input-0"
+              id="initial-input-0-label"
             >
-              <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-disabled Mui-disabled MuiFormLabel-filled Mui-required Mui-required"
-                data-shrink="true"
-                for="initial-input-0"
-                id="initial-input-0-label"
+              Initial Investment
+              <span
+                aria-hidden="true"
+                class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
               >
-                Initial Investment
-                <span
-                  aria-hidden="true"
-                  class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                >
-                   *
-                </span>
-              </label>
+                 *
+              </span>
+            </label>
+            <div
+              class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedStart"
+            >
               <div
-                class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedStart"
+                class="MuiInputAdornment-root MuiInputAdornment-positionStart"
               >
-                <div
-                  class="MuiInputAdornment-root MuiInputAdornment-positionStart"
+                <p
+                  class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
                 >
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
-                  >
-                    $
-                  </p>
-                </div>
-                <input
-                  aria-invalid="false"
-                  class="MuiInputBase-input MuiInput-input Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart"
-                  disabled=""
-                  id="initial-input-0"
-                  name="initial_value"
-                  required=""
-                  type="number"
-                  value="1000"
-                />
+                  $
+                </p>
               </div>
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiInput-input Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart"
+                disabled=""
+                id="initial-input-0"
+                name="initial_value"
+                required=""
+                type="number"
+                value="1000"
+              />
             </div>
           </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+        >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+            class="MuiFormControl-root MuiTextField-root"
           >
-            <div
-              class="MuiFormControl-root MuiTextField-root"
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-disabled Mui-disabled MuiFormLabel-filled Mui-required Mui-required"
+              data-shrink="true"
+              for="start-date-0"
+              id="start-date-0-label"
             >
-              <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-disabled Mui-disabled MuiFormLabel-filled Mui-required Mui-required"
-                data-shrink="true"
-                for="start-date-0"
-                id="start-date-0-label"
+              Start Date
+              <span
+                aria-hidden="true"
+                class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
               >
-                Start Date
-                <span
-                  aria-hidden="true"
-                  class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                >
-                   *
-                </span>
-              </label>
-              <div
-                class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl"
-              >
-                <input
-                  aria-invalid="false"
-                  class="MuiInputBase-input MuiInput-input Mui-disabled Mui-disabled"
-                  disabled=""
-                  id="start-date-0"
-                  name="start_date"
-                  required=""
-                  type="date"
-                  value="2020-01-01"
-                />
-              </div>
+                 *
+              </span>
+            </label>
+            <div
+              class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiInput-input Mui-disabled Mui-disabled"
+                disabled=""
+                id="start-date-0"
+                name="start_date"
+                required=""
+                type="date"
+                value="2020-01-01"
+              />
             </div>
           </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+        >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+            class="MuiFormControl-root MuiTextField-root"
           >
-            <div
-              class="MuiFormControl-root MuiTextField-root"
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-disabled Mui-disabled"
+              data-shrink="true"
+              for="end-date-0"
+              id="end-date-0-label"
             >
-              <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-disabled Mui-disabled"
-                data-shrink="true"
-                for="end-date-0"
-                id="end-date-0-label"
-              >
-                End Date
-              </label>
-              <div
-                class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl"
-              >
-                <input
-                  aria-invalid="false"
-                  class="MuiInputBase-input MuiInput-input Mui-disabled Mui-disabled"
-                  disabled=""
-                  id="end-date-0"
-                  name="end_data"
-                  type="date"
-                  value=""
-                />
-              </div>
+              End Date
+            </label>
+            <div
+              class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiInput-input Mui-disabled Mui-disabled"
+                disabled=""
+                id="end-date-0"
+                name="end_data"
+                type="date"
+                value=""
+              />
             </div>
           </div>
         </div>
       </div>
     </div>
-  </main>
-</DocumentFragment>
+  </div>
+</main>
 `;
