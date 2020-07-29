@@ -32,6 +32,9 @@ const PortfolioChart = ({ portfolioId }) => {
   const [data, setData] = useState(null);
   const [labels, setLabels] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
+  const portfolio = useSelector(
+    state => state.portfolios.portfolios.find(p => p.id === portfolioId)
+  );
   const investments = useSelector(state => state.investments.investments, shallowEqual);
   const table = Object.values(investments).reduce((table, row) => {
     table[row.symbol] = row.initial_value;
@@ -62,13 +65,15 @@ const PortfolioChart = ({ portfolioId }) => {
 
   return (
     <div className="PortfolioChart">
-      <Fab color="secondary" aria-label="add" onClick={handleClick}
-        variant="extended" className={classes.fab} disabled={isFetching}>
-        {isFetching
-          ? <CircularProgress className={classes.extendedIcon} size="2rem" />
-          : <TrendingUpIcon className={classes.extendedIcon} />}
-        Compute
-      </Fab>
+      {portfolio.investments.length !== 0 &&
+        <Fab color="secondary" aria-label="add" onClick={handleClick}
+          variant="extended" className={classes.fab} disabled={isFetching}>
+          {isFetching
+            ? <CircularProgress className={classes.extendedIcon} size="2rem" />
+            : <TrendingUpIcon className={classes.extendedIcon} />}
+          Compute
+        </Fab>
+      }
       {data && labels &&
         <ResponsiveContainer width='80%' height={400} className="PortfolioChart-Container">
           <LineChart
