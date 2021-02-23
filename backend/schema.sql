@@ -37,7 +37,7 @@ CREATE TABLE investments (
     end_date date,
     initial_value float NOT NULL,
     initial_price float,
-    symbol text NOT NULL REFERENCES stocks ON DELETE CASCADE,
+    symbol text NOT NULL,
     portfolio_id integer NOT NULL REFERENCES portfolios ON DELETE CASCADE,
     CONSTRAINT unique_investment UNIQUE (portfolio_id, symbol)
 );

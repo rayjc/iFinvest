@@ -1,5 +1,5 @@
-const db = require("../db");
 const ExpressError = require("../helpers/expressError");
+const tickerTrie = require("../ticker");
 
 
 class Stock {
@@ -13,29 +13,24 @@ class Stock {
     this.type = type;
   }
 
-  static async getAll(verbose = false) {
-    const result = verbose ?
-      await db.query(
-        `SELECT symbol, name, exchange, ipo_date, region, currency, type
-          FROM stocks ORDER BY symbol`
-      ) :
-      await db.query(
-        `SELECT symbol, name, exchange
-          FROM stocks ORDER BY symbol`
-      );
+  static async getAll() {
+    const stocks = [];
+    // loop through each uppercase alphabet
+    for (let i = 0; i < 26; i++) {
+      const letter = String.fromCharCode(65 + i);
+      // map each stock object to Stock
+      const stocksStartWithLetter = tickerTrie.get(letter)
+        .map(stock => new Stock(...Object.values(stock)));
+      // extend stocks array
+      stocks.concat(stocksStartWithLetter);
+    }
 
-    return result.rows.map(r => new Stock(...Object.values(r)));
+    return stocks;
   }
 
   static async findAll(symbol) {
-    console.log(symbol);
-    const result = await db.query(
-      `SELECT symbol, name, exchange FROM stocks
-        WHERE symbol ILIKE $1 LIMIT 100`,
-      [`${symbol}%`]
-    );
-
-    return result.rows.map(r => new Stock(...Object.values(r)));
+    return tickerTrie.get(symbol.toUpperCase())
+      .map(stock => new Stock(...Object.values(stock)));
   }
 }
 
